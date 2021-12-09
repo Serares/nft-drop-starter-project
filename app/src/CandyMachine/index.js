@@ -9,6 +9,8 @@ import {
   TOKEN_METADATA_PROGRAM_ID,
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
 } from './helpers';
+import CountdownTimer from '../CountdownTimer';
+
 const {
   metadata: { Metadata, MetadataProgram },
 } = programs;
@@ -358,16 +360,35 @@ const CandyMachine = ({ walletAddress }) => {
     });
   };
 
+  const renderDropTimer = () => {
+    const currentDate = new Date();
+    const dropDate = new Date(machineStats.goLiveData * 1000);
+
+    if(currentDate < dropDate) {
+      console.log(" Before drop date");
+      return <CountdownTimer dropDate={dropDate} />
+    }
+
+    return (<div>
+      <p>Drop Date {machineStats.goLiveDateTimeString}</p>
+      <button className="cta-button mint-button" onClick={mintToken} disabled={isMinting}>
+        Mint NFT
+      </button>
+    </div>)
+  }
+
   return (
     machineStats && (
       <div className="machine-container">
         <div className="gradient-text">
-          <p>{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>
           <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
         </div>
-        <button className="cta-button mint-button" onClick={mintToken} disabled={isMinting}>
-          Mint NFT
-        </button>
+        {machineStats.itemsRedeemed === machineStats.itemsAvailable ? (
+          <p className="sub-text">Sold Out 🙊</p>
+        ) : (
+          renderDropTimer()
+        )}
+        
         {isLoadingMints && <p>LOADING MINTS...</p>}
         {mints.length > 0 && renderMintedItems()}
       </div>
