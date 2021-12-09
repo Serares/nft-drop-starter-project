@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import twitterLogo from './assets/twitter-logo.svg';
+import CandyMachine from './CandyMachine/index';
 
 // Constants
 const TWITTER_HANDLE = '_buildspace';
@@ -8,14 +9,18 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
 
+  const [walletAddress, setWalletAddress] = useState(null);
+
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
       if (solana) {
         if (solana.isPhantom) {
           console.log("Phantom wallet connected");
-          const walletResponse = await solana.connect({onlyIfTrusted: true});
+          const walletResponse = await solana.connect({ onlyIfTrusted: true });
           console.log("Connected to public key:", walletResponse.publicKey.toString());
+
+          setWalletAddress(walletResponse.publicKey.toString());
         }
       } else {
         alert('Solana object not found! Get a Phantom Wallet 👻');
@@ -24,6 +29,27 @@ const App = () => {
       console.log(err)
     }
   }
+
+  const connectWallet = async () => {
+
+    const {solana} = window;
+
+    if(solana) {
+      const response = await solana.connect();
+      console.log("Connected with wallet public key:", response.publicKey.toString());
+      setWalletAddress(response.publicKey.toString());
+    }
+
+  };
+
+  const renderNotConnectedContainer = () => (
+    <button
+      className="cta-button connect-wallet-button"
+      onClick={connectWallet}
+    >
+      Connect Wallet
+    </button>
+  )
 
   useEffect(() => {
     const onLoad = async () => {
@@ -37,9 +63,11 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header">CANDY MACHINE</p>
-          <p className="sub-text">NFT drop machine with fair mint</p>
+          <p className="header">Food NFTs</p>
+          <p className="sub-text">Get a unique food art</p>
+          {!walletAddress && renderNotConnectedContainer()}
         </div>
+        {walletAddress && <CandyMachine walletAddress={window.solana} />}
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
