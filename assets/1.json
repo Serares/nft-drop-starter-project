@@ -1,0 +1,19 @@
+{
+    "name": "Pasta",
+    "symbol": "",
+    "image": "1.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "1.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "FrZ7jvETRmnoS1rJkXYZ1JukVDQrroKStGBXJgnMUa7F",
+          "share": 100
+        }
+      ]
+    }
+  }

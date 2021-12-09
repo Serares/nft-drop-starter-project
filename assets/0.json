@@ -1,0 +1,19 @@
+{
+    "name": "Pizza",
+    "symbol": "",
+    "image": "0.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "0.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "FrZ7jvETRmnoS1rJkXYZ1JukVDQrroKStGBXJgnMUa7F",
+          "share": 100
+        }
+      ]
+    }
+  }

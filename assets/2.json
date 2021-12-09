@@ -1,0 +1,19 @@
+{
+    "name": "Mozarella",
+    "symbol": "",
+    "image": "2.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "2.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "FrZ7jvETRmnoS1rJkXYZ1JukVDQrroKStGBXJgnMUa7F",
+          "share": 100
+        }
+      ]
+    }
+  }
