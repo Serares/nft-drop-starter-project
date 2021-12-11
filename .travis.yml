@@ -1,6 +1,11 @@
 language: node_js
 node_js:
-  - 14.18
+- 14.18
 before_script:
-  - npm install
-  - cd app && npm install && npm run build
+- npm install
+- cd app && npm install && npm run build
+deploy:
+  provider: heroku
+  app: nft-solana-drop
+  api_key:
+    secure: kms9HABzMZkW+cvClNXv6f6rZqSxaFZu3DW2KU3YOIxWS+04HSKvQyE1gE2sJBrvlEQqcaW8uTy6VkDsk0TLF0ycmGbFrLi45Kzb+o5yzqpEdXgIFnbqOroK/ZCr6WQbIpyazBD8q29oMqgAc71PteO6KPDXKSPlZrr29j8fZEUVpKBkThZUCyMaxSY9I1QL/Zk7fCFetZc2ox00CuwG3/W+d+hDjJ/UxnQ1vCtjQ0JwrAG6Fo1YyFUc9dyCVY05WcbGUTr2OTKOYz+dRM59E9rqkufrXeuZ3bk8CmzTV2WRVdoW5Iy341I4QlyST1taB/0iXskUXzc1Y2QWXRbdBMqJx3ZEk+a9jlG+fNhkkLmEa7DZ374NaJOe5T5RzQVM6aaLg8oibfvRIUW0+88cu1hwjTiU+LJSmA1Xyh2Qp2Cd/kCy2t1SKLDjEKpDWlX+V9tHmVitKsku+c6nvCrbhxcO2cq2zEK+4OwUbh38I4NCkpvg0PIyOXaHTHGhkeNy9+T+F5y7X59EgfrQXf9eIt1Cq/z1R/wTkNcMvu335DdpPI+K4xokqtBObnEkIKG26YtG1xcyCz+dZ0/s8/upRQZWRGBjKyyB+LvdJU4RIMGFKZx85CcctMHVv24aCpmecOoK6//tTXrkfbSrAD2K+kni/2s1+IOIgtNPi468oWk=
